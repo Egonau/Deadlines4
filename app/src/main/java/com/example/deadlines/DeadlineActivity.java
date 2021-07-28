@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class DeadlineActivity extends AppCompatActivity {
 
@@ -51,7 +52,7 @@ public class DeadlineActivity extends AppCompatActivity {
         map.put("DeadlinePriority", deadlinePriorityTextEdit.getText().toString());
         map.put("DeadlineSharing", deadlineSharingTextEdit.getText().toString());
         map.put("DeadlineDescription", deadlineDescriptionTextEdit.getText().toString());
-        FirebaseDatabase.getInstance().getReference().child(auth.getUid()).child("Deadlines").child("Accepted").child(String.valueOf(Single.getInstance().chosenYear)).child(String.valueOf(Single.getInstance().chosenMonth)).child(String.valueOf(Single.getInstance().chosenDay)).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child(Objects.requireNonNull(auth.getUid())).child("Deadlines").child("Accepted").child(String.valueOf(Single.getInstance().chosenYear)).child(String.valueOf(Single.getInstance().chosenMonth)).child(String.valueOf(Single.getInstance().chosenDay)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 FirebaseDatabase.getInstance().getReference().child(auth.getUid()).child("Deadlines").child("Accepted").child(String.valueOf(Single.getInstance().chosenYear)).child(String.valueOf(Single.getInstance().chosenMonth)).child(String.valueOf(Single.getInstance().chosenDay)).child(String.valueOf(snapshot.getChildrenCount())).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -64,7 +65,6 @@ public class DeadlineActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-
             }
         });
 

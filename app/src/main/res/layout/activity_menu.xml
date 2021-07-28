@@ -37,16 +37,9 @@
         app:layout_constraintStart_toEndOf="@+id/settingsButton"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <org.naishadhparmar.zcustomcalendar.CustomCalendar
-        android:id="@+id/custom_calendar"
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="356dp"
-        app:day_of_week_length="3"
-        app:day_of_week_start_from="monday"
-        app:month_year_format="full_month__with_year"
-        app:row_height="60dp"
-        app:left_button_src="@drawable/ic_keyboard_arrow_left_black_24dp"
-        app:right_button_src="@drawable/ic_keyboard_arrow_right_black_24dp"/>
-
+        android:layout_height="400dp" />
 
 </RelativeLayout>
