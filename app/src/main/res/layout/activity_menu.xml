@@ -31,7 +31,7 @@
         android:layout_marginEnd="65dp"
         android:layout_marginBottom="285dp"
         android:onClick="Deadline"
-        android:text="Deadline"
+        android:text="suggestions"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/settingsButton"
@@ -40,6 +40,7 @@
     <com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="400dp"
+        app:firstDayOfWeek="monday" />
 
 </RelativeLayout>

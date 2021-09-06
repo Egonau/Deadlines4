@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SharingActivity">
+
+    <EditText
+        android:id="@+id/groupSharingEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Group"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/occupationSharingEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/occupationSharingEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="18dp"
+        android:ems="10"
+        android:hint="Occupation"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/buildingSharingEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupSharingEditText" />
+
+    <EditText
+        android:id="@+id/buildingSharingEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="Building"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/nameSharingEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/occupationSharingEditText" />
+
+    <EditText
+        android:id="@+id/nameSharingEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="345dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buildingSharingEditText" />
+
+    <Button
+        android:id="@+id/sharingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="243dp"
+        android:text="Accept"
+        android:onClick="Accept"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sharingAcceptButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameSharingEditText"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/sharingAcceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="243dp"
+        android:text="Share"
+        android:onClick="Share"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sharingButton"
+        app:layout_constraintTop_toBottomOf="@+id/nameSharingEditText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ListView
+        android:choiceMode="multipleChoice"
+        android:id="@+id/sharingListView"
+        android:layout_width="409dp"
+        android:layout_height="204dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sharingButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

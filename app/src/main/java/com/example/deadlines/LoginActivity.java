@@ -23,7 +23,6 @@ public class LoginActivity extends Activity {
     private EditText loginTextEdit;
     private EditText passwordTextEdit;
     private Button loginButton;
-
     private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

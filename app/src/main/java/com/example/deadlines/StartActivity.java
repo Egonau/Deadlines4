@@ -1,19 +1,36 @@
 package com.example.deadlines;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity {
 
     private Button loginStartButton;
     private Button registrationStartButton;
     private FirebaseAuth auth;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_NOTIFICATION_TIME = "notification_time";
+    private SharedPreferences mSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +39,7 @@ public class StartActivity extends AppCompatActivity {
         registrationStartButton = findViewById(R.id.registrationStartButton);
         auth = FirebaseAuth.getInstance();
     }
+
     public void StartLogin(View view){
         if (auth.getCurrentUser() != null) {
             Intent intent=new Intent(StartActivity.this,MenuActivity.class);
@@ -36,4 +54,5 @@ public class StartActivity extends AppCompatActivity {
         Intent intent=new Intent(StartActivity.this,RegistrationActivity.class);
         startActivity(intent);
     }
+
 }
