@@ -31,20 +31,6 @@ public class DeadlineInfoActivity extends AppCompatActivity {
         deadlines = Single.getInstance().dayDeadlines.get(Single.getInstance().chosenLesson);
         RecyclerAdapter adapter = new RecyclerAdapter(DeadlineInfoActivity.this, deadlines);
         recyclerView.setAdapter(adapter);
-        FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot sn:snapshot.getChildren()){
-                    GenericTypeIndicator<HashMap<String,Object>> t = new GenericTypeIndicator<HashMap<String, Object>>() {};
-                    Single.getInstance().allUsersCredentials.put(sn.getKey().toString(),sn.child("Credentials").getValue(t));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
 }

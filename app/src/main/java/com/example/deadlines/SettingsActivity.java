@@ -54,7 +54,6 @@ public class SettingsActivity extends AppCompatActivity {
     String[] buildings = {"Солянка","Большой Харитоньевский переулок","Колобовский переулок","Лялин переулок"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         auth = FirebaseAuth.getInstance();
@@ -66,7 +65,6 @@ public class SettingsActivity extends AppCompatActivity {
         groupSpinner = findViewById(R.id.groupSpinner);
         occupationSpinner = findViewById(R.id.occupationSpinner);
         editTextTime = findViewById(R.id.editTextTime);
-
         nameEditText.setText(Single.getInstance().credentialsOfUser.get("Name").toString());
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         if (mSettings.contains(APP_PREFERENCES_NOTIFICATION_TIME)) {

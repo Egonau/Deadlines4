@@ -1,5 +1,6 @@
 package com.example.deadlines;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,6 +14,11 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jsoup.nodes.Document;
 
@@ -74,15 +80,25 @@ public class DayActivity extends AppCompatActivity {
                 throw new IllegalStateException("Unexpected value: " + dayOfWeek);
         }
         textViewDayName.setText(dayOfWeekString);
-        if (dayOfWeekString.equals("Воскресенье") || (Single.getInstance().schedule.size()==0)) {
+        if (dayOfWeekString.equals("Воскресенье") || (Single.getInstance().schedule.size()==0)|| (Single.getInstance().credentialsOfUser.get("Group").equals("Нет группы")) ) {
         }
         else{
             HashMap<String, String> daySchedule = Single.getInstance().schedule.get(dayOfWeekString);
             Integer lessonsAmount = daySchedule.size();
-            for (Integer i = 1;i<lessonsAmount;++i){
-                if (daySchedule.get(String.valueOf(i)).equals("")) {
-                    daySchedule.put(i.toString(),"Нет урока");
+            for (String key : daySchedule.keySet()) {
+                if (lessonsAmount<Integer.parseInt(key)){
+                    lessonsAmount = Integer.parseInt(key);
                 }
+            }
+            for (Integer i = 1;i<=lessonsAmount;++i){
+                if (!daySchedule.containsKey(String.valueOf(i))){
+                    daySchedule.put(i.toString(),"Нет урока");
+                } else{
+                    if (daySchedule.get(String.valueOf(i)).equals("")) {
+                        daySchedule.put(i.toString(),"Нет урока");
+                    }
+                }
+
             }
             for (Integer i = 1; i <= daySchedule.size(); ++i) {
                 String resourse = null;

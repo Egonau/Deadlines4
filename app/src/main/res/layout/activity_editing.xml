@@ -13,73 +13,66 @@
         android:layout_marginStart="98dp"
         android:layout_marginTop="37dp"
         android:layout_marginEnd="103dp"
+        android:layout_marginBottom="11dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/themeEditSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editThemeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="103dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Theme"
+    <Spinner
+        android:id="@+id/themeEditSpinner"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/priorityEditSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editNameView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editPriorityView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="103dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Priority"
+    <Spinner
+        android:id="@+id/priorityEditSpinner"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/sharingEditSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editThemeView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editSharingView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="103dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Sharing"
+    <Spinner
+        android:id="@+id/sharingEditSpinner"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="33dp"
+        app:layout_constraintBottom_toTopOf="@+id/editDescriptionView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPriorityView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editDescriptionView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
-        android:layout_marginTop="19dp"
         android:layout_marginEnd="103dp"
+        android:layout_marginBottom="145dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:text="Description"
+        app:layout_constraintBottom_toTopOf="@+id/editButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSharingView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/editButton"

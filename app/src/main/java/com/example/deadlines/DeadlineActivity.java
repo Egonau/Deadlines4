@@ -6,8 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,34 +29,75 @@ public class DeadlineActivity extends AppCompatActivity {
 
     private TextView deadlineText;
     private EditText deadlineNameTextEdit;
-    private EditText deadlineThemeTextEdit;
-    private EditText deadlinePriorityTextEdit;
-    private EditText deadlineSharingTextEdit;
+    private Spinner themeSpinner;
+    private Spinner prioritySpinner;
+    private Spinner sharingSpinner;
     private EditText deadlineDescriptionTextEdit;
     private Button deadlineSaveButton;
     private FirebaseAuth auth;
+    private HashMap<String,Object> map = new HashMap<>();
+    String[] theme = {"Уроки","Внеурочные мероприятия", "Внешкольные события"};
+    String[] priority = {"Важный","Неважный"};
+    String[] sharing  ={"Общелицейский дедлайн","Дедлайн группы","Личный дедлайн"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deadline);
         deadlineNameTextEdit = findViewById(R.id.deadlineNameTextEdit);
-        deadlineThemeTextEdit = findViewById(R.id.deadlineThemeTextEdit);
-        deadlinePriorityTextEdit  = findViewById(R.id.deadlinePriorityTextEdit);
-        deadlineSharingTextEdit = findViewById(R.id.deadlineSharingTextEdit);
+        themeSpinner = findViewById(R.id.themeSpinner);
+        prioritySpinner  = findViewById(R.id.prioritySpinner);
+        sharingSpinner = findViewById(R.id.sharingSpinner);
         deadlineDescriptionTextEdit = findViewById(R.id.deadlineDescriptionTextEdit);
         deadlineSaveButton = findViewById(R.id.deadlineSaveButton);
         auth = FirebaseAuth.getInstance();
+        ArrayAdapter<String> themeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, theme);
+        themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        themeSpinner.setAdapter(themeAdapter);
+        themeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                map.put("DeadlineTheme", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, priority);
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        prioritySpinner.setAdapter(priorityAdapter);
+        prioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                map.put("DeadlinePriority", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> sharingAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sharing);
+        sharingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sharingSpinner.setAdapter(sharingAdapter);
+        sharingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                map.put("DeadlineSharing", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     public void SaveDeadline(View view){
-        HashMap<String,Object> map = new HashMap<>();
         map.put("DeadlineName",  deadlineNameTextEdit.getText().toString());
-        map.put("DeadlineTheme", deadlineThemeTextEdit.getText().toString() );
-        map.put("DeadlinePriority", deadlinePriorityTextEdit.getText().toString());
-        map.put("DeadlineSharing", deadlineSharingTextEdit.getText().toString());
         map.put("DeadlineDescription", deadlineDescriptionTextEdit.getText().toString());
-
         if (Single.getInstance().tags.size()!=0){
             for(HashMap.Entry<String,String> m : Single.getInstance().tags.entrySet())
             {

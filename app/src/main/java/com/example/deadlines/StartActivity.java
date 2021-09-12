@@ -16,11 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class StartActivity extends AppCompatActivity {
         loginStartButton = findViewById(R.id.loginStartButton);
         registrationStartButton = findViewById(R.id.registrationStartButton);
         auth = FirebaseAuth.getInstance();
+        getAllUsersInfo();
     }
 
     public void StartLogin(View view){
@@ -53,6 +56,22 @@ public class StartActivity extends AppCompatActivity {
     public void StartRegistration(View view){
         Intent intent=new Intent(StartActivity.this,RegistrationActivity.class);
         startActivity(intent);
+    }
+    public void getAllUsersInfo(){
+        FirebaseDatabase.getInstance().getReference().addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot sn:snapshot.getChildren()){
+                    GenericTypeIndicator<HashMap<String,Object>> t = new GenericTypeIndicator<HashMap<String, Object>>() {};
+                    Single.getInstance().allUsersCredentials.put(sn.getKey().toString(),sn.child("Credentials").getValue(t));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 }

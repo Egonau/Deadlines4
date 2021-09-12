@@ -24,82 +24,31 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="301dp"
+        android:layout_marginBottom="142dp"
         android:ems="10"
         android:hint="Description"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/deadlineSaveButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deadlineSharingTextEdit" />
-
-    <EditText
-        android:id="@+id/deadlinePriorityTextEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="22dp"
-        android:ems="10"
-        android:hint="Priority"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/deadlineSharingTextEdit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deadlineThemeTextEdit" />
-
-    <EditText
-        android:id="@+id/deadlineThemeTextEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="21dp"
-        android:ems="10"
-        android:hint="Theme"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/deadlinePriorityTextEdit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deadlineNameTextEdit" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/deadlineNameTextEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="26dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="14dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/deadlineThemeTextEdit"
+        app:layout_constraintBottom_toTopOf="@+id/themeSpinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/deadlineText" />
-
-    <EditText
-        android:id="@+id/deadlineSharingTextEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:hint="Sharing"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/deadlineDescriptionTextEdit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deadlinePriorityTextEdit" />
 
     <Button
         android:id="@+id/deadlineSaveButton"
@@ -113,5 +62,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/themeSpinner"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/prioritySpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/prioritySpinner"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/sharingSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/sharingSpinner"
+        android:layout_width="209dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/deadlineDescriptionTextEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,10 +32,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class SharingActivity extends AppCompatActivity {
-
-    private EditText groupSharingEditText;
-    private EditText buildingSharingEditText;
-    private EditText occupationSharingEditText;
+    private Spinner groupSharingSpinner;
+    private Spinner buildingSharingSpinner;
+    private Spinner occupationSharingSpinner;
     private EditText nameSharingEditText;
     private Button sharingButton;
     private Button sharingAcceptButton;
@@ -42,14 +42,19 @@ public class SharingActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private List<String> users = new ArrayList<>();
     private SparseBooleanArray selected = new SparseBooleanArray();
+    String[] groups = {"Выбрать","Нет группы","9Ф1","9Ф2","9Ф3","9Ф4","9Ф5","9Ф6","9Ф7","9Ф8","9Ф9","9Ф10","9Ф11","9Ф12","9Ф13","9Ф14","9Ф15","9ФМ","10В1","10В2","10Г1","10Г2","10Г3","10Г4","10Г5","10Д1","10Д2","10Д3","10Е1","10Е2","10И1","10И2","10И3","10И4","10М","10П","10С1","10С2","10С3","10С4","10С5","10С6","10Э1","10Э2","10Э3","10Э4","10Э5","10Ю1","10Ю2","11В1","11В2","11Г1","11Г2","11Г3","11Г4","11Г5","11Д1","11Д2","11Е1","11Е2","11И1","11И2","11И3","11И4","11М","11П","11С1","11С2","11С3","11С4","11С5","11С6","11Э1","11Э2","11Э3","11Э4","11Э5","11Ю1","11Ю2"};
+    String[] occupations = {"Выбрать","Преподаватель","Студент","Сторонний пользователь"};
+    String[] buildings = {"Выбрать","Солянка","Большой Харитоньевский переулок","Колобовский переулок","Лялин переулок"};
+    private HashMap<String,String> chosenOptions = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sharing);
         auth = FirebaseAuth.getInstance();
-        groupSharingEditText = findViewById(R.id.groupSharingEditText);
-        buildingSharingEditText = findViewById(R.id.buildingSharingEditText);
-        occupationSharingEditText = findViewById(R.id.occupationSharingEditText);
+        groupSharingSpinner = findViewById(R.id.groupSharingSpinner);
+        buildingSharingSpinner = findViewById(R.id.buildingSharingSpinner);
+        occupationSharingSpinner = findViewById(R.id.occupationSharingSpinner);
         nameSharingEditText = findViewById(R.id.nameSharingEditText);
         sharingButton = findViewById(R.id.sharingButton);
         sharingAcceptButton = findViewById(R.id.sharingAcceptButton);
@@ -59,9 +64,52 @@ public class SharingActivity extends AppCompatActivity {
             HashMap<String,String> user  = (HashMap<String, String>) entry.getValue();
                 users.add(user.get("Name"));
         }
+        ArrayAdapter<String> groupAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, groups);
+        groupAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        groupSharingSpinner.setAdapter(groupAdapter);
+        groupSharingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                chosenOptions.put("Group", (String) adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> buildingAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, buildings);
+        buildingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        buildingSharingSpinner.setAdapter(buildingAdapter);
+        buildingSharingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                chosenOptions.put("Building", (String) adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> occupationAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, occupations);
+        occupationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        occupationSharingSpinner.setAdapter(occupationAdapter);
+        occupationSharingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                chosenOptions.put("Occupation", (String) adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         ArrayAdapter<String> adapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_multiple_choice, users);
         sharingListView.setAdapter(adapter);
+        /*
         nameSharingEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,9 +118,6 @@ public class SharingActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                groupSharingEditText.getText().clear();
-                occupationSharingEditText.getText().clear();
-                buildingSharingEditText.getText().clear();
                 users.clear();
                 for(Map.Entry entry:Single.getInstance().allUsersCredentials.entrySet()){
                     HashMap<String,String> user  = (HashMap<String, String>) entry.getValue();
@@ -90,6 +135,8 @@ public class SharingActivity extends AppCompatActivity {
 
             }
         });
+
+         */
         sharingListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -103,9 +150,9 @@ public class SharingActivity extends AppCompatActivity {
         users.clear();
         for(Map.Entry entry:Single.getInstance().allUsersCredentials.entrySet()){
             HashMap<String,String> user  = (HashMap<String, String>) entry.getValue();
-            if (!user.get("Group").isEmpty()&&Objects.equals(user.get("Group"), groupSharingEditText.getText().toString())&&!user.get("Occupation").isEmpty()&&Objects.equals(user.get("Occupation"), occupationSharingEditText.getText().toString())&&!user.get("Building").isEmpty()&&Objects.equals(user.get("Building"), buildingSharingEditText.getText().toString())){//&&!user.get("Occupation").isEmpty()&&user.get("Occupation").equals(occupationSharingEditText.getText())&&!user.get("Building").isEmpty()&&user.get("Building").equals(buildingSharingEditText.getText())&&!user.get("Group").isEmpty()&&user.get("Group").equals(groupSharingEditText.getText())){
+            if (Objects.equals(user.get("Group"),chosenOptions.get("Group"))&&Objects.equals(user.get("Occupation"),chosenOptions.get("Occupation"))&&Objects.equals(user.get("Building"), chosenOptions.get("Building"))){//&&!user.get("Occupation").isEmpty()&&user.get("Occupation").equals(occupationSharingEditText.getText())&&!user.get("Building").isEmpty()&&user.get("Building").equals(buildingSharingEditText.getText())&&!user.get("Group").isEmpty()&&user.get("Group").equals(groupSharingEditText.getText())){
                 users.add(user.get("Name"));
-            }
+           }
         }
         ArrayAdapter<String> adapter = new ArrayAdapter(this,
                 android.R.layout.simple_list_item_multiple_choice, users);

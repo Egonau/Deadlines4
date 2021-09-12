@@ -5,33 +5,105 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+
 public class EditingActivity extends AppCompatActivity {
-    EditText editNameView;
-    EditText editThemeView;
-    EditText editPriorityView;
-    EditText editSharingView;
-    EditText editDescriptionView;
+    private EditText editNameView;
+    private Spinner themeEditSpinner;
+    private Spinner priorityEditSpinner;
+    private Spinner sharingEditSpinner;
+    private EditText editDescriptionView;
+    String[] theme = {"Уроки","Внеурочные мероприятия", "Внешкольные события"};
+    String[] priority = {"Важный","Неважный"};
+    String[] sharing  ={"Общелицейский дедлайн","Дедлайн группы","Личный дедлайн"};
+    HashMap<String,Object> editedDeadline = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editing);
         editNameView = findViewById(R.id.editNameView);
-        editThemeView = findViewById(R.id.editThemeView);
-        editPriorityView = findViewById(R.id.editPriorityView);
-        editSharingView = findViewById(R.id.editSharingView);
+        themeEditSpinner = findViewById(R.id.themeEditSpinner);
+        priorityEditSpinner = findViewById(R.id.priorityEditSpinner);
+        sharingEditSpinner = findViewById(R.id.sharingEditSpinner);
         editDescriptionView = findViewById(R.id.editDescriptionView);
+        ArrayAdapter<String> themeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, theme);
+        themeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        themeEditSpinner.setAdapter(themeAdapter);
+        themeEditSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                editedDeadline.put("DeadlineTheme", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, priority);
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        priorityEditSpinner.setAdapter(priorityAdapter);
+        priorityEditSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                editedDeadline.put("DeadlinePriority", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> sharingAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sharing);
+        sharingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sharingEditSpinner.setAdapter(sharingAdapter);
+        sharingEditSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                editedDeadline.put("DeadlineSharing", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         editNameView.setText(Single.getInstance().editedDeadline.get("DeadlineName").toString());
-        editThemeView.setText(Single.getInstance().editedDeadline.get("DeadlineTheme").toString());
-        editPriorityView.setText(Single.getInstance().editedDeadline.get("DeadlinePriority").toString());
-        editSharingView.setText(Single.getInstance().editedDeadline.get("DeadlineSharing").toString());
         editDescriptionView.setText(Single.getInstance().editedDeadline.get("DeadlineDescription").toString());
+        Integer currentTheme = 0;
+        Integer currentPriority = 0;
+        Integer currentSharing = 0;
+        for (Integer i = 0;i<theme.length;++i){
+            if (theme[i].equals(Single.getInstance().editedDeadline.get("DeadlineTheme").toString())){
+                currentTheme = i;
+                break;
+            }
+        }
+        for (Integer i = 0;i<priority.length;++i){
+            if (priority[i].equals(Single.getInstance().editedDeadline.get("DeadlinePriority").toString())){
+                currentPriority = i;
+                break;
+            }
+        }
+        for (Integer i = 0;i<sharing.length;++i){
+            if (sharing[i].equals(Single.getInstance().editedDeadline.get("DeadlineSharing").toString())){
+                currentSharing = i;
+                break;
+            }
+        }
+        themeEditSpinner.setSelection(currentTheme);
+        priorityEditSpinner.setSelection(currentPriority);
+        sharingEditSpinner.setSelection(currentSharing);
     }
 
     public void Edit(View view) {
@@ -41,11 +113,12 @@ public class EditingActivity extends AppCompatActivity {
         String month = Single.getInstance().dateInfo[1];
         String day = Single.getInstance().dateInfo[2];
         String number = Single.getInstance().dateInfo[3];
+        Single.getInstance().editedDeadline.put("DeadlineTheme", editedDeadline.get("DeadlineTheme"));
+        Single.getInstance().editedDeadline.put("DeadlinePriority", editedDeadline.get("DeadlinePriority"));
+        Single.getInstance().editedDeadline.put("DeadlineSharing", editedDeadline.get("DeadlineSharing"));
         Single.getInstance().editedDeadline.put("DeadlineName",editNameView.getText().toString());
-        Single.getInstance().editedDeadline.put("DeadlineTheme",editThemeView.getText().toString());
-        Single.getInstance().editedDeadline.put("DeadlinePriority",editPriorityView.getText().toString());
-        Single.getInstance().editedDeadline.put("DeadlineSharing",editSharingView.getText().toString());
         Single.getInstance().editedDeadline.put("DeadlineDescription",editDescriptionView.getText().toString());
+        editedDeadline.clear();
         rootRef.child(auth.getUid()).child("Deadlines").child("Accepted").child(year).child(month).child(day).child(number).updateChildren(Single.getInstance().editedDeadline);
         Intent intent=new Intent(this,MenuActivity.class);
         startActivity(intent);
