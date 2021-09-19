@@ -7,7 +7,7 @@
     android:visibility="visible">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/deadlineAcceptanceCardView"
+        android:id="@+id/olympCardView"
         android:layout_width="wrap_content"
         android:layout_height="136dp"
         android:visibility="visible">
@@ -23,7 +23,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/deadline_acceptance_name"
+                    android:id="@+id/olymp_name"
                     android:layout_width="match_parent"
                     android:layout_height="79dp"
                     android:textAlignment="center"
@@ -31,7 +31,7 @@
                     android:visibility="visible" />
 
                 <TextView
-                    android:id="@+id/deadline_acceptance_priority"
+                    android:id="@+id/olymp_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"

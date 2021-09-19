@@ -42,6 +42,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Spinner buildingSpinner;
     private Spinner groupSpinner;
     private Spinner occupationSpinner;
+    private Spinner olympiadSpinner;
     private FirebaseAuth auth;
     private EditText editTextTime;
     private ListView listView;
@@ -52,12 +53,14 @@ public class SettingsActivity extends AppCompatActivity {
     String[] groups = {"Нет группы","9Ф1","9Ф2","9Ф3","9Ф4","9Ф5","9Ф6","9Ф7","9Ф8","9Ф9","9Ф10","9Ф11","9Ф12","9Ф13","9Ф14","9Ф15","9ФМ","10В1","10В2","10Г1","10Г2","10Г3","10Г4","10Г5","10Д1","10Д2","10Д3","10Е1","10Е2","10И1","10И2","10И3","10И4","10М","10П","10С1","10С2","10С3","10С4","10С5","10С6","10Э1","10Э2","10Э3","10Э4","10Э5","10Ю1","10Ю2","11В1","11В2","11Г1","11Г2","11Г3","11Г4","11Г5","11Д1","11Д2","11Е1","11Е2","11И1","11И2","11И3","11И4","11М","11П","11С1","11С2","11С3","11С4","11С5","11С6","11Э1","11Э2","11Э3","11Э4","11Э5","11Ю1","11Ю2"};
     String[] occupations = {"Преподаватель","Студент","Сторонний пользователь"};
     String[] buildings = {"Солянка","Большой Харитоньевский переулок","Колобовский переулок","Лялин переулок"};
+    String[] olymps = {"Биология","География","Информатика","Математика","Физика","Химия","Астрономия","ИЗО","Искусство","История","Лингвистика","Литература","ОБЖ","Обществознание","Предпринимательство","Право","Психология","Робототехника","Русский язык","Технология","Физкультура","Черчение","Экология","Экология","Ин. языки"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         auth = FirebaseAuth.getInstance();
         getCredentials();
+        olympiadSpinner = findViewById(R.id.olympiadSpinner);
         logOutButton = findViewById(R.id.logOutButton);
         saveSettingsButton = findViewById(R.id.saveSettingsButton);
         nameEditText = findViewById(R.id.nameEditText);
@@ -77,6 +80,20 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 map.put("Group", adapterView.getItemAtPosition(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        ArrayAdapter<String> olympiadAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, olymps);
+        olympiadAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        olympiadSpinner.setAdapter(olympiadAdapter);
+        olympiadSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                map.put("Olymps", adapterView.getItemAtPosition(i));
             }
 
             @Override
@@ -112,9 +129,34 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-        groupSpinner.setSelection(groupAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Group").toString()));
-        buildingSpinner.setSelection(buildingAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Building").toString()));
-        occupationSpinner.setSelection(occupationAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Occupation").toString()));
+        try {
+            groupSpinner.setSelection(groupAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Group").toString()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            groupSpinner.setSelection(groupAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Group").toString()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            olympiadSpinner.setSelection(olympiadAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Olymps").toString()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            buildingSpinner.setSelection(buildingAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Building").toString()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            occupationSpinner.setSelection(occupationAdapter.getPosition(Single.getInstance().credentialsOfUser.get("Occupation").toString()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void getCredentials() {
         FirebaseDatabase.getInstance().getReference().child(Objects.requireNonNull(auth.getUid())).child("Credentials").addValueEventListener(new ValueEventListener() {

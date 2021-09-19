@@ -7,7 +7,7 @@
     tools:context=".DayActivity">
 
     <TextView
-        android:id="@+id/textViewDayName"
+        android:id="@+id/textViewOlympsSelected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"
@@ -31,34 +31,47 @@
         android:text="ADD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <TableLayout
-        android:id="@+id/tableView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:layout_marginBottom="15dp"
+    <ScrollView
+        android:layout_width="411dp"
+        android:layout_height="463dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="18dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddEventDay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDayName">
+        app:layout_constraintTop_toBottomOf="@+id/textViewOlympsSelected">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <TableLayout
+            android:id="@+id/tableView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:isScrollContainer="true"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAddEventDay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewOlympsSelected">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

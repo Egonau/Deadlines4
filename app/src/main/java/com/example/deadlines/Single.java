@@ -37,6 +37,7 @@ public class Single {
     public static ArrayList<HashMap<String,Object>> suggestedDeadlines = new ArrayList<>();
     public static List<HashMap<String,Object>> deletingAcceptedDeadlines = new ArrayList<>();
     public static HashMap<String,HashMap<String,Object>> allUsersCredentials = new HashMap<>();
+    public static ArrayList<HashMap<String,Object>> allCurrentOlympiads = new ArrayList<>();
     private Single() {
     }
 

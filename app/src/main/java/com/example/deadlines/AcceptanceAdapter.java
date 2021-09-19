@@ -21,7 +21,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -156,10 +155,10 @@ public class AcceptanceAdapter extends RecyclerView.Adapter<AcceptanceAdapter.De
 
         public DeadlineViewHolder(View itemView) {
             super(itemView);
-            deadlineAcceptanceCardView = itemView.findViewById(R.id.deadlineAcceptanceCardView);
-            deadline_acceptance_name = itemView.findViewById(R.id.deadline_acceptance_name);
+            deadlineAcceptanceCardView = itemView.findViewById(R.id.olympCardView);
+            deadline_acceptance_name = itemView.findViewById(R.id.olymp_name);
             deadline_acceptance_priority = itemView.findViewById(R.id.deadline_acceptance_description);
-            deadline_acceptance_description = itemView.findViewById(R.id.deadline_acceptance_priority);
+            deadline_acceptance_description = itemView.findViewById(R.id.olymp_status);
             deadline_acceptance_date = itemView.findViewById(R.id.deadline_acceptance_date);
             deadline_acceptance_lesson = itemView.findViewById(R.id.deadline_acceptance_lesson);
             acceptImageView = itemView.findViewById(R.id.acceptImageView);

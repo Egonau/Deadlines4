@@ -10,12 +10,14 @@
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_deadline_info.xml" value="0.3046875" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_editing.xml" value="0.3046875" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_menu.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_olympiads.xml" value="0.3046875" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_settings.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_sharing.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/activity_sorting.xml" value="0.3046875" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/deadline_info_row_layout.xml" value="0.3046875" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/item_acceptance_view.xml" value="0.22" />
-        <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/item_view.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/item_olymps_view.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/item_view.xml" value="0.22" />
         <entry key="..\:/Users/egona/AndroidStudioProjects/Deadlines/app/src/main/res/layout/standart_row.xml" value="0.4466666666666667" />
       </map>
     </option>

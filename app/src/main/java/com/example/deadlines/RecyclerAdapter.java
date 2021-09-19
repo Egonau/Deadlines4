@@ -128,10 +128,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Deadli
         ImageView editImageView;
         public DeadlineViewHolder(View itemView) {
             super(itemView);
-            deadlineCardView = itemView.findViewById(R.id.deadlineAcceptanceCardView);
-            deadline_name = itemView.findViewById(R.id.deadline_acceptance_name);
+            deadlineCardView = itemView.findViewById(R.id.olympCardView);
+            deadline_name = itemView.findViewById(R.id.olymp_name);
             deadline_description = itemView.findViewById(R.id.deadline_acceptance_description);
-            deadline_priority = itemView.findViewById(R.id.deadline_acceptance_priority);
+            deadline_priority = itemView.findViewById(R.id.olymp_status);
             shareImageView = itemView.findViewById(R.id.shareImageView);
             deleteImageView = itemView.findViewById(R.id.deleteImageView);
             editImageView = itemView.findViewById(R.id.editImageView);

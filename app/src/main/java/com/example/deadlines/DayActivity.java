@@ -1,6 +1,5 @@
 package com.example.deadlines;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -14,13 +13,6 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
-
-import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +32,7 @@ public class DayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_day);
         tableView = findViewById(R.id.tableView);
         auth = FirebaseAuth.getInstance();
-        textViewDayName = findViewById(R.id.textViewDayName);
+        textViewDayName = findViewById(R.id.textViewOlympsSelected);
         buttonAddEventDay = findViewById(R.id.buttonAddEventDay);
         Calendar c = Calendar.getInstance();
         c.setTime(new Date(Integer.parseInt(Single.getInstance().chosenYear)+1900,Integer.parseInt(Single.getInstance().chosenMonth),Integer.parseInt(Single.getInstance().chosenDay)));
